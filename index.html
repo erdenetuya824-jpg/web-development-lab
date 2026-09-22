@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Болдбаатар Бат — CV</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f0efe8;
+    --card: #ffffff;
+    --ink: #1c1c1e;
+    --ink-soft: #5b5c62;
+    --accent: #2f6f4f;
+    --accent2: #d98c3f;
+    --accent-soft: #e7f0ea;
+    --line: #e6e4dd;
+    --chip-bg: #f2f1eb;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #15161a;
+      --card: #1e1f23;
+      --ink: #f2f1ee;
+      --ink-soft: #a7a8ac;
+      --accent: #7fcf9e;
+      --accent2: #e9ab63;
+      --accent-soft: #223227;
+      --line: #2c2d31;
+      --chip-bg: #24252a;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #15161a; --card: #1e1f23; --ink: #f2f1ee; --ink-soft: #a7a8ac;
+    --accent: #7fcf9e; --accent2: #e9ab63; --accent-soft: #223227;
+    --line: #2c2d31; --chip-bg: #24252a;
+  }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    line-height: 1.65;
+    padding: 48px 20px 64px;
+    min-height: 100%;
+  }
+  .sheet {
+    max-width: 760px;
+    margin: 0 auto;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 25px 60px -28px rgba(0,0,0,0.3);
+    animation: rise .6s cubic-bezier(.2,.7,.3,1) both;
+  }
+  @keyframes rise { from { opacity:0; transform: translateY(14px);} to { opacity:1; transform:none; } }
+
+  .hero {
+    position: relative;
+    padding: 52px 44px 76px;
+    background: linear-gradient(135deg, var(--accent) 0%, #234f38 100%);
+    color: #fff;
+    overflow: hidden;
+  }
+  .hero::before, .hero::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+  }
+  .hero::before { width: 260px; height: 260px; top: -120px; right: -60px; }
+  .hero::after { width: 160px; height: 160px; bottom: -80px; left: -40px; background: rgba(255,255,255,0.06); }
+
+  .hero-inner { position: relative; z-index: 1; display: flex; align-items: center; gap: 22px; }
+  .avatar {
+    flex: 0 0 auto;
+    width: 76px; height: 76px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.16);
+    border: 2px solid rgba(255,255,255,0.5);
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800; font-size: 28px; letter-spacing: 0.5px;
+    backdrop-filter: blur(4px);
+  }
+  h1 {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: clamp(26px, 4vw, 34px);
+    margin: 0 0 6px;
+    letter-spacing: -0.02em;
+  }
+  .role {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.15);
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 13px;
+    margin: 0;
+  }
+  .role::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--accent2); }
+
+  .content { padding: 40px 44px 44px; margin-top: -34px; }
+  .intro-card {
+    background: var(--chip-bg);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 22px 24px;
+    font-size: 15.5px;
+    color: var(--ink-soft);
+    margin-bottom: 36px;
+    position: relative;
+    z-index: 2;
+  }
+
+  h2 {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 12.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    margin: 0 0 18px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  h2::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+
+  section { margin-bottom: 34px; }
+  section:last-of-type { margin-bottom: 0; }
+
+  .skills-grid {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+  }
+  .skills-grid li {
+    background: var(--chip-bg);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 13px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  }
+  .skills-grid li:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent);
+    box-shadow: 0 10px 20px -14px rgba(0,0,0,0.4);
+  }
+  .skill-top { display: flex; align-items: center; gap: 10px; margin-bottom: 9px; }
+  .skill-dot {
+    width: 28px; height: 28px; border-radius: 8px;
+    background: var(--accent-soft); color: var(--accent);
+    display: flex; align-items: center; justify-content: center;
+    flex: 0 0 auto; font-size: 14px;
+  }
+  .bar { height: 6px; border-radius: 999px; background: var(--line); overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--accent), var(--accent2)); }
+
+  .contact-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .contact-row a {
+    flex: 1 1 200px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--accent-soft);
+    color: var(--ink);
+    text-decoration: none;
+    border-radius: 14px;
+    padding: 16px 18px;
+    font-weight: 600;
+    font-size: 14.5px;
+    transition: transform .18s ease, box-shadow .18s ease;
+  }
+  .contact-row a:hover { transform: translateY(-2px); box-shadow: 0 12px 24px -16px rgba(0,0,0,0.4); }
+  .contact-row .icn {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: var(--accent); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    flex: 0 0 auto;
+  }
+  .contact-row span.label { color: var(--ink-soft); font-weight: 500; font-size: 12px; display: block; }
+
+  footer {
+    text-align: center;
+    color: var(--ink-soft);
+    font-size: 12px;
+    padding: 24px 0 4px;
+    border-top: 1px solid var(--line);
+    margin-top: 40px;
+  }
+
+  @media (max-width: 480px) {
+    .hero { padding: 40px 26px 66px; }
+    .content { padding: 32px 24px 36px; }
+    .hero-inner { flex-direction: column; align-items: flex-start; gap: 16px; }
+  }
+</style>
+</head>
+<body>
+  <div class="sheet">
+    <div class="hero">
+      <div class="hero-inner">
+        <div class="avatar">ББ</div>
+        <div>
+          <h1>Эрдэнэтуяа Эрдэнэбат</h1>
+          <p class="role">Програм Хангамж · Оюутан</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="content">
+      <p class="intro-card">
+        Мэдээллийн технологийн сургуулийн 2-р курсийн суралцагч. Вэб хөгжүүлэлт
+        болон шинэ технологиудыг сонирхон судалдаг бөгөөд практик төслүүд дээр
+        ажиллаж, кодлох чадвараа тасралтгүй хөгжүүлж байна.
+      </p>
+
+      <section>
+        <h2>Эзэмшсэн чадварууд</h2>
+        <ul class="skills-grid">
+          <li>
+            <div class="skill-top">
+              <span class="skill-dot">&lt;/&gt;</span>
+              <span>HTML5 &amp; CSS3 үндэс</span>
+            </div>
+            <div class="bar"><div class="bar-fill" style="width:80%"></div></div>
+          </li>
+          <li>
+            <div class="skill-top">
+              <span class="skill-dot">⑂</span>
+              <span>Git &amp; GitHub</span>
+            </div>
+            <div class="bar"><div class="bar-fill" style="width:65%"></div></div>
+          </li>
+          <li>
+            <div class="skill-top">
+              <span class="skill-dot">C++</span>
+              <span>Программчлал</span>
+            </div>
+            <div class="bar"><div class="bar-fill" style="width:55%"></div></div>
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Холбоо барих</h2>
+        <div class="contact-row">
+          <a href="https://github.com" target="_blank" rel="noopener">
+            <span class="icn">
+              <svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+              </svg>
+            </span>
+            <span>
+              <span class="label">GitHub</span>
+              GitHub профайл
+            </span>
+          </a>
+        </div>
+      </section>
+
+      <footer>Сүүлд шинэчлэгдсэн · 2026 он</footer>
+    </div>
+  </div>
+</body>
+</html>
