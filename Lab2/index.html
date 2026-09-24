@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Лаборатори 02: Хэрэглэгчийн анкет</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Unbounded:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fff6f9; --card:#fff; --ink:#3b1f2d; --muted:#8a6577; --line:#f7dbe6;
+  --p900:#5a1a38; --p700:#c23b73; --p500:#ee7fa9; --p100:#ffe8f0; --pink:#ffb3cd;
+  --ok:#1e9a68; --r:20px;
+  --shadow:0 10px 30px -12px rgba(194,59,115,.22);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "Manrope",system-ui,sans-serif}
+h1,h2,h3{font-family:"Unbounded","Manrope",sans-serif;font-weight:600;margin:0;line-height:1.25}
+:focus-visible{outline:3px solid var(--p700);outline-offset:2px}
+
+/* Hero */
+.hero{background:radial-gradient(800px 380px at 90% -10%,rgba(255,255,255,.75),transparent 60%),linear-gradient(135deg,#ffd6e4,#ffbcd3 65%,#ffcbb8);color:var(--p900);padding-bottom:110px}
+.wrap{max-width:1120px;margin:auto;padding:0 20px}
+.bar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding-top:18px}
+.logo{font-family:"Unbounded",sans-serif;font-weight:600;font-size:1.05rem}
+.logo b{color:var(--p700)}
+nav ul{list-style:none;margin:0;padding:5px;display:flex;gap:2px;background:rgba(255,255,255,.55);border-radius:999px;backdrop-filter:blur(8px)}
+nav a{display:block;color:#8a2d58;text-decoration:none;padding:8px 18px;border-radius:999px;font-weight:600;font-size:.92rem;transition:background .15s}
+nav a:hover{background:rgba(255,255,255,.8)}
+nav a.on{background:#fff;color:var(--p700)}
+.intro{display:flex;align-items:center;gap:28px;margin-top:48px;flex-wrap:wrap}
+.pic{width:112px;height:112px;border-radius:32px;background:linear-gradient(135deg,#fff,#ffe3ee) center/cover;color:var(--p700);display:grid;place-items:center;font:600 2.4rem "Unbounded",sans-serif;box-shadow:0 14px 30px -10px rgba(194,59,115,.35);flex:none}
+.intro h1{font-size:clamp(1.6rem,4vw,2.6rem)}
+.intro p{margin:6px 0 0;color:#8a4a66}
+
+/* Overview: дүн + сонирхол */
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:24px}
+.overview{display:grid;grid-template-columns:1.05fr 1fr;margin-top:-72px;padding:0;overflow:hidden}
+.overview>section{padding:28px}
+.overview>section+section{border-left:1px solid var(--line);background:linear-gradient(180deg,#fffafc,#fff)}
+.rings{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.rings li{display:flex;align-items:center;gap:14px;padding:14px 16px;border:1.5px solid var(--line);border-radius:18px;background:#fffafc}
+.ring{--v:0;width:68px;height:68px;border-radius:50%;flex:none;background:conic-gradient(var(--p500) calc(var(--v)*1%),var(--p100) 0);display:grid;place-items:center}
+.ring span{width:52px;height:52px;border-radius:50%;background:#fff;display:grid;place-items:center;font:600 1rem "Unbounded",sans-serif;color:var(--p700)}
+.rings small{display:block;color:var(--muted);font-size:.78rem;font-weight:700}
+.rings strong{font-size:.98rem;line-height:1.3}
+.rings .avg{background:linear-gradient(135deg,var(--p700),#e8709a);border-color:transparent;color:#fff;box-shadow:0 10px 20px -10px rgba(194,59,115,.7)}
+.rings .avg small{color:#ffe8f0}
+.rings .avg .ring{background:conic-gradient(#fff calc(var(--v)*1%),rgba(255,255,255,.3) 0)}
+.rings .avg .ring span{background:transparent;color:#fff;width:100%;height:100%;font-size:1.05rem}
+
+/* Layout */
+main{display:grid;grid-template-columns:1fr 340px;gap:24px;margin:28px auto 64px;align-items:start}
+h2{font-size:1.05rem;color:var(--p700);margin-bottom:16px}
+form{display:grid;gap:24px}
+fieldset{border:0;margin:0;padding:0;min-width:0}
+fieldset.card{padding:28px}
+legend{display:flex;align-items:center;gap:12px;padding:0;margin-bottom:20px;font:600 1.1rem "Unbounded",sans-serif;color:var(--ink)}
+legend i{width:38px;height:38px;border-radius:12px;background:var(--p100);color:var(--p700);display:grid;place-items:center;font-style:normal}
+legend svg{width:20px;height:20px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px 20px}
+.full{grid-column:1/-1}
+label,.lbl{display:block;font-weight:700;font-size:.88rem;margin-bottom:6px}
+input[type=text],input[type=url],input[type=email],input[type=password],input[type=tel],input[type=date],select,textarea{
+  width:100%;font:inherit;color:var(--ink);background:#fffafc;border:1.5px solid var(--line);border-radius:12px;padding:11px 14px;transition:border-color .15s,box-shadow .15s,background .15s}
+input:hover,select:hover,textarea:hover{border-color:#f2b7cf}
+input:focus,select:focus,textarea:focus{outline:none;background:#fff;border-color:var(--p500);box-shadow:0 0 0 4px rgba(238,127,169,.28)}
+input:user-invalid{border-color:#d64560}
+::placeholder{color:#a79fbd}
+textarea{resize:vertical;min-height:120px}
+.pw{position:relative}
+.pw button{position:absolute;right:6px;top:50%;transform:translateY(-50%);border:0;background:none;color:var(--p700);font:700 .8rem "Manrope";padding:6px 10px;cursor:pointer}
+.count{text-align:right;font-size:.78rem;color:var(--muted);margin-top:4px}
+
+.opts{display:flex;flex-wrap:wrap;gap:10px}
+.opts label{display:flex;align-items:center;gap:8px;margin:0;font-weight:600;background:#fffafc;border:1.5px solid var(--line);border-radius:12px;padding:10px 16px;cursor:pointer;transition:.15s}
+.opts label:hover{border-color:#f2b7cf}
+.opts label:has(input:checked){border-color:var(--p500);background:var(--p100);color:var(--p700)}
+.opts input{accent-color:var(--p500);width:16px;height:16px;margin:0}
+
+.file{display:flex;align-items:center;gap:16px;padding:14px;border:2px dashed #f2b7cf;border-radius:14px;background:#fffafc}
+.thumb{width:64px;height:64px;border-radius:18px;background:var(--p100) center/cover;flex:none;display:grid;place-items:center;color:var(--p700);font-size:.7rem;font-weight:700}
+input[type=file]{font:inherit;font-size:.88rem;color:var(--muted);max-width:100%}
+input[type=file]::file-selector-button{font:inherit;font-weight:700;background:var(--p700);color:#fff;border:0;border-radius:10px;padding:9px 16px;margin-right:12px;cursor:pointer}
+input[type=file]::file-selector-button:hover{background:var(--p500)}
+
+input[type=range]{width:100%;accent-color:var(--p700)}
+.range{display:flex;align-items:center;gap:14px}
+.range output{min-width:44px;text-align:center;font:600 .95rem "Unbounded",sans-serif;color:var(--p700);background:var(--p100);border-radius:10px;padding:6px 0}
+.q{counter-increment:q}
+.qs{counter-reset:q}
+.qs .q>label:first-child::before,.qs .q>.lbl:first-child::before{content:counter(q);display:inline-grid;place-items:center;width:22px;height:22px;margin-right:8px;border-radius:50%;background:var(--p100);color:var(--p700);font:700 .75rem "Manrope"}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn{font:700 1rem "Manrope";border-radius:14px;padding:14px 30px;cursor:pointer;border:2px solid transparent;transition:transform .1s,box-shadow .15s,background .15s}
+.btn:active{transform:translateY(1px)}
+.primary{background:linear-gradient(135deg,var(--p700),var(--p500));color:#fff;box-shadow:0 10px 22px -8px rgba(194,59,115,.5)}
+.primary:hover{box-shadow:0 14px 26px -8px rgba(194,59,115,.65)}
+.ghost{background:#fff;color:var(--p700);border-color:var(--line)}
+.ghost:hover{background:var(--p100)}
+
+/* Side */
+.side{display:grid;gap:24px;position:sticky;top:20px}
+.head{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:16px}
+.head h2{margin:0}
+.head small{color:var(--muted);font-weight:700;font-size:.8rem;white-space:nowrap}
+.chips{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.chip{position:relative;display:flex;align-items:center;gap:8px;min-height:48px;padding:8px 12px;border:1.5px solid var(--line);border-radius:14px;background:#fffafc;color:var(--p900);font-weight:700;font-size:.82rem;line-height:1.25;cursor:pointer;transition:.15s;margin:0}
+.chip:hover{border-color:#f2b7cf;background:var(--p100)}
+.chip input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.chip svg{width:20px;height:20px;flex:none;color:var(--p700);fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.chip:has(input:checked){background:linear-gradient(135deg,var(--p700),#e8709a);border-color:transparent;color:#fff;box-shadow:0 8px 16px -8px rgba(194,59,115,.7)}
+.chip:has(input:checked) svg{color:#fff}
+.chip:has(input:focus-visible){outline:3px solid var(--p700);outline-offset:2px}
+.chips-note{color:var(--muted);margin:12px 0 0;font-size:.8rem}
+.meter{height:10px;border-radius:10px;background:var(--p100);overflow:hidden;margin:10px 0 6px}
+.meter i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--p500),#ffb08f);border-radius:10px;transition:width .3s}
+.side p{margin:0;color:var(--muted);font-size:.9rem}
+.tip{background:linear-gradient(135deg,var(--p100),#fff1e6);border-color:transparent;box-shadow:none}
+
+/* Result toast */
+#result{position:fixed;left:50%;bottom:24px;transform:translate(-50%,140%);width:min(460px,calc(100% - 32px));background:#fff;border:1px solid var(--line);border-left:6px solid var(--ok);border-radius:16px;box-shadow:0 20px 50px -12px rgba(90,26,56,.35);padding:18px 22px;transition:transform .35s cubic-bezier(.2,.9,.3,1.2);z-index:10}
+#result.show{transform:translate(-50%,0)}
+#result h3{font-size:.95rem;color:var(--ok);margin-bottom:8px}
+#result dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:2px 14px;font-size:.9rem}
+#result dt{color:var(--muted)} #result dd{margin:0;font-weight:700}
+#result button{position:absolute;top:8px;right:12px;border:0;background:none;font-size:1.3rem;cursor:pointer;color:var(--muted)}
+
+@media (max-width:980px){
+  main{grid-template-columns:1fr}
+  .side{position:static}
+}
+@media (max-width:860px){
+  .overview{grid-template-columns:1fr}
+  .overview>section+section{border-left:0;border-top:1px solid var(--line)}
+}
+@media (max-width:560px){
+  .chips{grid-template-columns:1fr 1fr}
+  .rings{grid-template-columns:1fr}
+  .grid{grid-template-columns:1fr}
+  fieldset.card{padding:20px}
+  .intro{margin-top:32px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="bar">
+      <div class="logo">Миний<b>анкет</b></div>
+      <nav aria-label="Үндсэн цэс">
+        <ul>
+          <li><a href="#top" class="on">Нүүр хуудас</a></li>
+          <li><a href="#anket">Анкет засах</a></li>
+          <li><a href="#help">Тусламж</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="intro">
+      <div class="pic" id="heroPic">?</div>
+      <div>
+        <h1 id="heroName">Сайн байна уу!</h1>
+        <p>Анкетаа бөглөж, өөрийн мэдээллийг шинэчилнэ үү.</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <section class="card overview" aria-label="Миний дүн ба сонирхол">
+    <section aria-labelledby="gh">
+      <div class="head"><h2 id="gh">Миний дүн</h2><small>3 хичээл</small></div>
+      <ul class="rings">
+        <li><div class="ring" style="--v:95"><span>95</span></div><div><small>Дүн</small><strong>Веб зохиомж</strong></div></li>
+        <li><div class="ring" style="--v:88"><span>88</span></div><div><small>Дүн</small><strong>Мэдээллийн сан</strong></div></li>
+        <li><div class="ring" style="--v:92"><span>92</span></div><div><small>Дүн</small><strong>Алгоритм</strong></div></li>
+        <li class="avg"><div class="ring" style="--v:91.7"><span>91.7</span></div><div><small>Дундаж</small><strong>Нийт дүн</strong></div></li>
+      </ul>
+    </section>
+    <section aria-labelledby="ih">
+      <div class="head"><h2 id="ih">Миний сонирхол</h2><small><span id="icount">3</span> / 9 сонгосон</small></div>
+      <div class="chips" role="group" aria-label="Миний сонирхол">
+        <label class="chip"><input type="checkbox" name="interest" value="Веб хөгжүүлэлт" form="anket" checked><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 8l-4 4 4 4M16 8l4 4-4 4M14 5l-4 14"/></svg><span>Веб хөгжүүлэлт</span></label>
+        <label class="chip"><input type="checkbox" name="interest" value="Фото зураг авах" form="anket" checked><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg><span>Фото зураг авах</span></label>
+        <label class="chip"><input type="checkbox" name="interest" value="Кино үзэх" form="anket" checked><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M10 9.5v5l4.5-2.5z"/></svg><span>Кино үзэх</span></label>
+        <label class="chip"><input type="checkbox" name="interest" value="Хиймэл оюун ухаан" form="anket"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/></svg><span>Хиймэл оюун ухаан</span></label>
+        <label class="chip"><input type="checkbox" name="interest" value="Кибер аюулгүй байдал" form="anket"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg><span>Кибер аюулгүй байдал</span></label>
+        <label class="chip"><input type="checkbox" name="interest" value="Мобайл апп" form="anket"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg><span>Мобайл апп</span></label>
+        <label class="chip"><input type="checkbox" name="interest" value="Дата шинжилгээ" form="anket"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h16M7 20v-6M12 20V6M17 20v-9"/></svg><span>Дата шинжилгээ</span></label>
+        <label class="chip"><input type="checkbox" name="interest" value="Мэдээллийн сан" form="anket"><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v12c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3"/></svg><span>Мэдээллийн сан</span></label>
+        <label class="chip"><input type="checkbox" name="interest" value="Cloud / DevOps" form="anket"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 18a4 4 0 0 1-.5-8A6 6 0 0 1 18 9.5a4.2 4.2 0 0 1-.5 8.5z"/></svg><span>Cloud / DevOps</span></label>
+      </div>
+      <p class="chips-note">Сонирхлоо дарж нэмэх, хасах боломжтой.</p>
+    </section>
+  </section>
+
+  <main>
+    <form id="anket" action="#" method="post">
+      <fieldset class="card">
+        <legend><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></svg></i>Хувийн мэдээлэл</legend>
+        <div class="grid">
+          <div class="full">
+            <label for="name">Овог нэр:</label>
+            <input type="text" id="name" name="name" placeholder="И. Болдбаатар" required>
+          </div>
+          <div>
+            <label for="email">Цахим хаяг (Email):</label>
+            <input type="email" id="email" name="email" placeholder="example@domain.com" required>
+          </div>
+          <div>
+            <label for="password">Нууц үг:</label>
+            <div class="pw">
+              <input type="password" id="password" name="password" minlength="6" required>
+              <button type="button" id="togglePw">Харуулах</button>
+            </div>
+          </div>
+          <div>
+            <label for="phone">Утасны дугаар:</label>
+            <input type="tel" id="phone" name="phone" placeholder="88112233" pattern="[0-9]{8}" title="8 оронтой тоо оруулна уу">
+          </div>
+          <div>
+            <label for="birth">Төрсөн огноо:</label>
+            <input type="date" id="birth" name="birth">
+          </div>
+          <div class="full">
+            <span class="lbl">Хүйс:</span>
+            <div class="opts">
+              <label><input type="radio" name="gender" value="Эрэгтэй"> Эрэгтэй</label>
+              <label><input type="radio" name="gender" value="Эмэгтэй"> Эмэгтэй</label>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="card">
+        <legend><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11.5V16c3 2.5 9 2.5 12 0v-4.5"/></svg></i>Боловсрол ба Сонирхол</legend>
+        <div class="grid">
+          <div class="full">
+            <label for="level">Суралцаж буй түвшин:</label>
+            <select id="level" name="level">
+              <option value="">-- Сонгоно уу --</option>
+              <option>Бакалавр</option>
+              <option>Магистр</option>
+              <option>Доктор</option>
+            </select>
+          </div>
+          <div class="full">
+            <span class="lbl">Сонирхож буй технологиуд:</span>
+            <div class="opts">
+              <label><input type="checkbox" name="tech" value="HTML5 / CSS3"> HTML5 / CSS3</label>
+              <label><input type="checkbox" name="tech" value="JavaScript"> JavaScript</label>
+              <label><input type="checkbox" name="tech" value="PHP & MySQL"> PHP &amp; MySQL</label>
+            </div>
+          </div>
+          <div class="full">
+            <label for="photo">Профайл зураг оруулна уу:</label>
+            <div class="file">
+              <div class="thumb" id="thumb">Зураг</div>
+              <input type="file" id="photo" name="photo" accept="image/*">
+            </div>
+          </div>
+          <div class="full">
+            <label for="about">Товч танилцуулга / Өөрийн тухай:</label>
+            <textarea id="about" name="about" rows="4" maxlength="300" placeholder="Өөрийн танилцуулгыг энд бичнэ үү..."></textarea>
+            <div class="count"><span id="cnt">0</span> / 300</div>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="card">
+        <legend><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/></svg></i>Мэргэжлийн асуумж</legend>
+        <div class="grid qs">
+          <div class="full q">
+            <label for="field">Сонирхож буй мэргэжлийн чиглэл:</label>
+            <select id="field" name="field">
+              <option value="">-- Сонгоно уу --</option>
+              <option>Программ хангамжийн инженер</option>
+              <option>Веб хөгжүүлэгч (Frontend / Backend)</option>
+              <option>Веб / UI-UX дизайнер</option>
+              <option>Мэдээллийн сангийн мэргэжилтэн</option>
+              <option>Сүлжээ ба кибер аюулгүй байдал</option>
+              <option>Дата шинжээч / Хиймэл оюун</option>
+              <option>Мобайл апп хөгжүүлэгч</option>
+              <option>Төслийн менежер (IT)</option>
+            </select>
+          </div>
+          <div class="q">
+            <span class="lbl">Ажлын туршлага:</span>
+            <div class="opts">
+              <label><input type="radio" name="exp" value="Байхгүй"> Байхгүй</label>
+              <label><input type="radio" name="exp" value="1 жил хүртэл"> 1 жил хүртэл</label>
+              <label><input type="radio" name="exp" value="1–3 жил"> 1–3 жил</label>
+              <label><input type="radio" name="exp" value="3+ жил"> 3+ жил</label>
+            </div>
+          </div>
+          <div class="q">
+            <span class="lbl">Ажиллах хэлбэр:</span>
+            <div class="opts">
+              <label><input type="radio" name="work" value="Бүтэн цаг"> Бүтэн цаг</label>
+              <label><input type="radio" name="work" value="Хагас цаг"> Хагас цаг</label>
+              <label><input type="radio" name="work" value="Фрилансер"> Фрилансер</label>
+              <label><input type="radio" name="work" value="Зайнаас"> Зайнаас</label>
+            </div>
+          </div>
+          <div class="full q">
+            <span class="lbl">Мэддэг програмчлалын хэлүүд:</span>
+            <div class="opts">
+              <label><input type="checkbox" name="lang" value="Python"> Python</label>
+              <label><input type="checkbox" name="lang" value="Java"> Java</label>
+              <label><input type="checkbox" name="lang" value="C#"> C#</label>
+              <label><input type="checkbox" name="lang" value="JavaScript"> JavaScript</label>
+              <label><input type="checkbox" name="lang" value="PHP"> PHP</label>
+              <label><input type="checkbox" name="lang" value="SQL"> SQL</label>
+            </div>
+          </div>
+          <div class="full q">
+            <label for="skill">Програмчлалын ур чадвараа өөрөө үнэлнэ үү (1–10):</label>
+            <div class="range">
+              <input type="range" id="skill" name="skill" min="1" max="10" value="5">
+              <output id="skillOut" for="skill">5</output>
+            </div>
+          </div>
+          <div class="q">
+            <label for="strong">Хамгийн сайн мэддэг ур чадвар:</label>
+            <input type="text" id="strong" name="strong" placeholder="Жишээ: Responsive дизайн">
+          </div>
+          <div class="q">
+            <span class="lbl">Багаар ажиллах уу, ганцаараа юу?</span>
+            <div class="opts">
+              <label><input type="radio" name="team" value="Багаар"> Багаар</label>
+              <label><input type="radio" name="team" value="Ганцаараа"> Ганцаараа</label>
+            </div>
+          </div>
+          <div class="q">
+            <span class="lbl">Мэргэжлийн сертификаттай юу?</span>
+            <div class="opts">
+              <label><input type="radio" name="cert" value="Тийм"> Тийм</label>
+              <label><input type="radio" name="cert" value="Үгүй"> Үгүй</label>
+            </div>
+          </div>
+          <div class="q">
+            <label for="salary">Хүсэж буй сарын цалин:</label>
+            <select id="salary" name="salary">
+              <option value="">-- Сонгоно уу --</option>
+              <option>1–2 сая ₮</option>
+              <option>2–3 сая ₮</option>
+              <option>3–5 сая ₮</option>
+              <option>5 сая ₮-өөс дээш</option>
+            </select>
+          </div>
+          <div class="full q">
+            <label for="goal">Ойрын 5 жилийн мэргэжлийн зорилго:</label>
+            <textarea id="goal" name="goal" rows="3" placeholder="Жишээ: Senior хөгжүүлэгч болох, өөрийн стартап нээх..."></textarea>
+          </div>
+        </div>
+      </fieldset>
+
+      <div class="actions">
+        <button type="submit" class="btn primary">Анкет Илгээх</button>
+        <button type="reset" class="btn ghost">Дахин эхлүүлэх</button>
+      </div>
+    </form>
+
+    <aside class="side">
+      <section class="card">
+        <h2>Анкетын бөглөлт</h2>
+        <div class="meter" role="progressbar" aria-valuemin="0" aria-valuemax="100" id="meter"><i id="fill"></i></div>
+        <p><b id="pct">0%</b> бөглөгдсөн</p>
+      </section>
+      <section class="card tip" id="help">
+        <h2>Тусламж</h2>
+        <p>Нууц үг доод тал нь 6 тэмдэгттэй, утасны дугаар 8 оронтой байх ёстой. Зургаа сонгоход дээд талд урьдчилж харагдана.</p>
+      </section>
+    </aside>
+  </main>
+</div>
+
+<div id="result" role="status" aria-live="polite"></div>
+
+<script>
+const $ = id => document.getElementById(id);
+const form = $('anket');
+
+// Бөглөлтийн хувь
+function progress(){
+  const names = [...new Set([...form.elements].filter(el => el.name && el.name !== 'skill').map(el => el.name))];
+  const d = new FormData(form);
+  const done = names.filter(n => n === 'photo' ? $('photo').files.length : d.getAll(n).some(v => String(v).trim())).length;
+  const p = Math.round(done / names.length * 100);
+  $('fill').style.width = p + '%';
+  $('pct').textContent = p + '%';
+  $('meter').setAttribute('aria-valuenow', p);
+}
+$('skill').addEventListener('input', e => $('skillOut').textContent = e.target.value);
+form.addEventListener('input', progress);
+const count = () => $('icount').textContent = form.querySelectorAll('input[name=interest]:checked').length;
+form.addEventListener('change', () => { progress(); count(); });
+
+// Нэр дээд хэсэгт шууд харагдана
+$('name').addEventListener('input', e => {
+  const v = e.target.value.trim();
+  $('heroName').textContent = v || 'Сайн байна уу!';
+  if (!$('photo').files.length) $('heroPic').textContent = v ? v.replace(/^[^А-Яа-яӨөҮү\w]+/,'').charAt(0).toUpperCase() : '?';
+});
+
+// Нууц үг харуулах
+$('togglePw').addEventListener('click', e => {
+  const p = $('password'), show = p.type === 'password';
+  p.type = show ? 'text' : 'password';
+  e.target.textContent = show ? 'Нуух' : 'Харуулах';
+});
+
+// Тэмдэгт тоологч
+$('about').addEventListener('input', e => $('cnt').textContent = e.target.value.length);
+
+// Зургийн урьдчилан харалт
+$('photo').addEventListener('change', e => {
+  const f = e.target.files[0];
+  if (!f) return clearPics();
+  const url = `url(${URL.createObjectURL(f)})`;
+  $('thumb').style.backgroundImage = url; $('thumb').textContent = '';
+  $('heroPic').style.backgroundImage = url; $('heroPic').textContent = '';
+});
+function clearPics(){
+  $('thumb').style.backgroundImage = $('heroPic').style.backgroundImage = '';
+  $('thumb').textContent = 'Зураг'; $('heroPic').textContent = '?';
+}
+
+// Илгээх
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  const d = new FormData(form);
+  const esc = s => String(s || '—').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  $('result').innerHTML = `
+    <button type="button" aria-label="Хаах" onclick="this.parentNode.classList.remove('show')">×</button>
+    <h3>Анкет амжилттай илгээгдлээ</h3>
+    <dl>
+      <dt>Овог нэр</dt><dd>${esc(d.get('name'))}</dd>
+      <dt>Цахим хаяг</dt><dd>${esc(d.get('email'))}</dd>
+      <dt>Утас</dt><dd>${esc(d.get('phone'))}</dd>
+      <dt>Хүйс</dt><dd>${esc(d.get('gender'))}</dd>
+      <dt>Түвшин</dt><dd>${esc(d.get('level'))}</dd>
+      <dt>Сонирхол</dt><dd>${esc(d.getAll('interest').join(', '))}</dd>
+      <dt>Технологи</dt><dd>${esc(d.getAll('tech').join(', '))}</dd>
+      <dt>Мэргэжил</dt><dd>${esc(d.get('field'))}</dd>
+      <dt>Туршлага</dt><dd>${esc(d.get('exp'))}</dd>
+      <dt>Ур чадвар</dt><dd>${esc(d.get('skill'))} / 10</dd>
+    </dl>`;
+  $('result').classList.add('show');
+  setTimeout(() => $('result').classList.remove('show'), 8000);
+});
+
+form.addEventListener('reset', () => {
+  clearPics(); $('cnt').textContent = 0; $('skillOut').textContent = 5; $('heroName').textContent = 'Сайн байна уу!';
+  $('result').classList.remove('show'); setTimeout(() => { progress(); count(); });
+});
+</script>
+</body>
+</html>
