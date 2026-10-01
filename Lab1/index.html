@@ -1,286 +1,233 @@
 <!DOCTYPE html>
-<html lang="mn">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Эрдэнэтуяа Эрдэнэбат — CV</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>E CV</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #f0efe8;
-    --card: #ffffff;
-    --ink: #1c1c1e;
-    --ink-soft: #5b5c62;
-    --accent: #2f6f4f;
-    --accent2: #d98c3f;
-    --accent-soft: #e7f0ea;
-    --line: #e6e4dd;
-    --chip-bg: #f2f1eb;
-    box-sizing: border-box;
-    padding-top: env(safe-area-inset-top, 0px);
-    padding-bottom: env(safe-area-inset-bottom, 0px);
+    --bg: #eaf1f7;
+    --paper: #ffffff;
+    --ink: #2b3f55;
+    --muted: #6a7f93;
+    --line: #d3e1ee;
+    --accent: #5f8fb8;
+    --accent-soft: #eef4fa;
+    --side-from: #dce9f4;
+    --side-to: #f0f5fa;
+    --head: "Bricolage Grotesque", "Segoe UI", Arial, sans-serif;
+    --body: "Source Serif 4", Georgia, "Times New Roman", serif;
   }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --bg: #15161a;
-      --card: #1e1f23;
-      --ink: #f2f1ee;
-      --ink-soft: #a7a8ac;
-      --accent: #7fcf9e;
-      --accent2: #e9ab63;
-      --accent-soft: #223227;
-      --line: #2c2d31;
-      --chip-bg: #24252a;
-    }
-  }
-  :root[data-theme="dark"] {
-    --bg: #15161a; --card: #1e1f23; --ink: #f2f1ee; --ink-soft: #a7a8ac;
-    --accent: #7fcf9e; --accent2: #e9ab63; --accent-soft: #223227;
-    --line: #2c2d31; --chip-bg: #24252a;
-  }
-  html { scroll-padding-top: env(safe-area-inset-top, 0px); }
-  * { box-sizing: border-box; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
-    margin: 0;
-    background: var(--bg);
+    background: linear-gradient(180deg, #e1ebf4, #f1f6fa);
     color: var(--ink);
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    line-height: 1.65;
-    padding: 48px 20px 64px;
-    min-height: 100%;
+    font-family: var(--body);
+    font-size: 17px;
+    line-height: 1.6;
+    padding: 40px 16px;
   }
-  .sheet {
-    max-width: 760px;
+  .cv {
+    max-width: 1000px;
     margin: 0 auto;
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: 24px;
+    background: var(--paper);
+    display: grid;
+    grid-template-columns: 310px 1fr;
+    border-radius: 14px;
     overflow: hidden;
-    box-shadow: 0 25px 60px -28px rgba(0,0,0,0.3);
-    animation: rise .6s cubic-bezier(.2,.7,.3,1) both;
+    box-shadow: 0 20px 50px rgba(95, 143, 184, .18);
   }
-  @keyframes rise { from { opacity:0; transform: translateY(14px);} to { opacity:1; transform:none; } }
 
-  .hero {
-    position: relative;
-    padding: 52px 44px 76px;
-    background: linear-gradient(135deg, var(--accent) 0%, #234f38 100%);
-    color: #fff;
-    overflow: hidden;
+  /* Sidebar */
+  aside {
+    background: linear-gradient(180deg, var(--side-from), var(--side-to));
+    padding: 44px 30px;
   }
-  .hero::before, .hero::after {
+  .avatar {
+    width: 124px; height: 124px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #9dbfdc, #6a98c0);
+    display: grid; place-items: center;
+    font: 800 42px var(--head);
+    color: #fff;
+    margin-bottom: 26px;
+    border: 5px solid #fff;
+    box-shadow: 0 6px 16px rgba(95,143,184,.3);
+  }
+  aside h2 {
+    font: 700 16px var(--head);
+    color: var(--accent);
+    margin: 30px 0 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid rgba(95,143,184,.3);
+  }
+  aside ul { list-style: none; font-size: 15px; }
+  aside li { margin-bottom: 8px; word-break: break-word; }
+  aside a { color: inherit; text-decoration: none; border-bottom: 1px solid rgba(43,63,85,.3); }
+  aside a:hover { border-color: var(--accent); color: var(--accent); }
+  .skill { margin-bottom: 12px; font-size: 15px; }
+  .bar { height: 6px; background: rgba(255,255,255,.8); border-radius: 3px; margin-top: 5px; }
+  .bar span { display: block; height: 100%; background: linear-gradient(90deg, #b5d0e6, #6a98c0); border-radius: 3px; }
+
+  /* Main */
+  main { padding: 48px 46px; }
+  header h1 { font: 800 46px/1.05 var(--head); letter-spacing: -.02em; }
+  header .role { font: 500 20px var(--head); color: var(--accent); margin-top: 8px; }
+  .summary { margin-top: 18px; color: var(--muted); max-width: 62ch; }
+
+  section { margin-top: 38px; }
+  section > h2 { font: 700 22px var(--head); margin-bottom: 16px; }
+
+  .timeline { border-left: 2px solid var(--line); padding-left: 24px; }
+  .item { position: relative; margin-bottom: 26px; }
+  .item::before {
     content: "";
     position: absolute;
+    left: -32px; top: 8px;
+    width: 12px; height: 12px;
     border-radius: 50%;
-    background: rgba(255,255,255,0.08);
+    background: var(--paper);
+    border: 3px solid var(--accent);
   }
-  .hero::before { width: 260px; height: 260px; top: -120px; right: -60px; }
-  .hero::after { width: 160px; height: 160px; bottom: -80px; left: -40px; background: rgba(255,255,255,0.06); }
+  .item h3 { font: 700 18px var(--head); }
+  .meta { font-style: italic; color: var(--muted); font-size: 15px; margin-bottom: 6px; }
+  .item ul { padding-left: 18px; }
+  .item li { margin-bottom: 4px; }
 
-  .hero-inner { position: relative; z-index: 1; display: flex; align-items: center; gap: 22px; }
-  .avatar {
-    flex: 0 0 auto;
-    width: 76px; height: 76px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.16);
-    border: 2px solid rgba(255,255,255,0.5);
-    color: #fff;
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Manrope', sans-serif;
-    font-weight: 800; font-size: 28px; letter-spacing: 0.5px;
-    backdrop-filter: blur(4px);
-  }
-  h1 {
-    font-family: 'Manrope', sans-serif;
-    font-weight: 800;
-    font-size: clamp(26px, 4vw, 34px);
-    margin: 0 0 6px;
-    letter-spacing: -0.02em;
-  }
-  .role {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(255,255,255,0.15);
-    padding: 6px 14px;
-    border-radius: 999px;
-    font-weight: 600;
-    font-size: 13px;
-    margin: 0;
-  }
-  .role::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--accent2); }
-
-  .content { padding: 40px 44px 44px; margin-top: -34px; }
-  .intro-card {
-    background: var(--chip-bg);
-    border: 1px solid var(--line);
-    border-radius: 16px;
-    padding: 22px 24px;
-    font-size: 15.5px;
-    color: var(--ink-soft);
-    margin-bottom: 36px;
-    position: relative;
-    z-index: 2;
-  }
-
-  h2 {
-    font-family: 'Manrope', sans-serif;
-    font-weight: 700;
-    font-size: 12.5px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--accent);
-    margin: 0 0 18px;
-    display: flex; align-items: center; gap: 8px;
-  }
-  h2::after { content: ""; flex: 1; height: 1px; background: var(--line); }
-
-  section { margin-bottom: 34px; }
-  section:last-of-type { margin-bottom: 0; }
-
-  .skills-grid {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 12px;
-  }
-  .skills-grid li {
-    background: var(--chip-bg);
+  .projects { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .project {
+    background: var(--accent-soft);
     border: 1px solid var(--line);
     border-radius: 12px;
-    padding: 13px 16px;
-    font-size: 14px;
-    font-weight: 500;
-    transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
-  }
-  .skills-grid li:hover {
-    transform: translateY(-3px);
-    border-color: var(--accent);
-    box-shadow: 0 10px 20px -14px rgba(0,0,0,0.4);
-  }
-  .skill-top { display: flex; align-items: center; gap: 10px; margin-bottom: 9px; }
-  .skill-dot {
-    width: 28px; height: 28px; border-radius: 8px;
-    background: var(--accent-soft); color: var(--accent);
-    display: flex; align-items: center; justify-content: center;
-    flex: 0 0 auto; font-size: 14px;
-  }
-  .bar { height: 6px; border-radius: 999px; background: var(--line); overflow: hidden; }
-  .bar-fill { height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--accent), var(--accent2)); }
-
-  .contact-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-  .contact-row a {
-    flex: 1 1 200px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    background: var(--accent-soft);
-    color: var(--ink);
-    text-decoration: none;
-    border-radius: 14px;
     padding: 16px 18px;
-    font-weight: 600;
-    font-size: 14.5px;
-    transition: transform .18s ease, box-shadow .18s ease;
   }
-  .contact-row a:hover { transform: translateY(-2px); box-shadow: 0 12px 24px -16px rgba(0,0,0,0.4); }
-  .contact-row .icn {
-    width: 36px; height: 36px; border-radius: 50%;
-    background: var(--accent); color: #fff;
-    display: flex; align-items: center; justify-content: center;
-    flex: 0 0 auto;
-  }
-  .contact-row span.label { color: var(--ink-soft); font-weight: 500; font-size: 12px; display: block; }
+  .project h3 { font: 700 17px var(--head); }
+  .project p { font-size: 15px; color: var(--muted); margin: 4px 0 8px; }
+  .project small { font: 500 13px var(--head); color: var(--accent); }
 
-  footer {
-    text-align: center;
-    color: var(--ink-soft);
-    font-size: 12px;
-    padding: 24px 0 4px;
-    border-top: 1px solid var(--line);
-    margin-top: 40px;
+  .plain { list-style: none; }
+  .plain li { margin-bottom: 8px; }
+  .plain span { display: block; font-size: 14px; color: var(--muted); font-style: italic; }
+
+  a:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+  @media (max-width: 800px) {
+    .cv { grid-template-columns: 1fr; }
+    main { padding: 32px 24px; }
+    header h1 { font-size: 36px; }
+    .projects { grid-template-columns: 1fr; }
   }
 
-  @media (max-width: 480px) {
-    .hero { padding: 40px 26px 66px; }
-    .content { padding: 32px 24px 36px; }
-    .hero-inner { flex-direction: column; align-items: flex-start; gap: 16px; }
+  @media print {
+    body { background: #fff; padding: 0; }
+    .cv { box-shadow: none; border-radius: 0; max-width: none; }
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    section, .item, .project { break-inside: avoid; }
   }
 </style>
 </head>
 <body>
-  <div class="sheet">
-    <div class="hero">
-      <div class="hero-inner">
-        <div class="avatar">ЭЭ</div>
-        <div>
-          <h1>Эрдэнэтуяа Эрдэнэбат</h1>
-          <p class="role">Програм Хангамж · Оюутан</p>
-        </div>
-      </div>
-    </div>
+  <div class="cv">
 
-    <div class="content">
-      <p class="intro-card">
-        Мэдээллийн технологийн сургуулийн 2-р курсийн суралцагч. Вэб хөгжүүлэлт
-        болон шинэ технологиудыг сонирхон судалдаг бөгөөд практик төслүүд дээр
-        ажиллаж, кодлох чадвараа тасралтгүй хөгжүүлж байна.
-      </p>
+    <aside>
+      <div class="avatar" aria-hidden="true">BD</div>
+
+      <h2>Personal info</h2>
+      <ul>
+        <li>Ulaanbaatar, Mongolia</li>
+        <li>+976 9900 0000</li>
+        <li><a href="mailto:baterdene@example.com">erdenetuya@example.com</a></li>
+        <li><a href="https://github.com/your-name">github.com/erdenetuya824
+        <li><a href="https://linkedin.com/in/your-name">linkedin.com/in/SUya></li>
+      </ul>
+
+      <h2>Skills</h2>
+      <div class="skill">Node.js / Express<div class="bar"><span style="width:90%"></span></div></div>
+      <div class="skill">Python / Django<div class="bar"><span style="width:75%"></span></div></div>
+      <div class="skill">SQL (PostgreSQL, MySQL)<div class="bar"><span style="width:85%"></span></div></div>
+      <div class="skill">REST APIs &amp; Auth (JWT)<div class="bar"><span style="width:88%"></span></div></div>
+      <div class="skill">Docker &amp; Linux<div class="bar"><span style="width:70%"></span></div></div>
+      <div class="skill">Git &amp; CI/CD<div class="bar"><span style="width:80%"></span></div></div>
+
+      <h2>Languages</h2>
+      <ul>
+        <li>Mongolian – native</li>
+        <li>English – upper intermediate (IELTS 6.5)</li>
+        <li>Chinese – basic</li>
+      </ul>
+    </aside>
+
+    <main>
+      <header>
+        <h1>Erdenetuya Erdenebat</h1>
+        <p class="role">Backend Developer</p>
+        <p class="summary">Backend developer studnet with the experience designing APIs, databases and services that are fast, secure and easy to maintain. I write clean, tested code, care about performance, and enjoy solving hard problems with a team.</p>
+      </header>
 
       <section>
-        <h2>Эзэмшсэн чадварууд</h2>
-        <ul class="skills-grid">
-          <li>
-            <div class="skill-top">
-              <span class="skill-dot">&lt;/&gt;</span>
-              <span>HTML5 &amp; CSS3 үндэс</span>
-            </div>
-            <div class="bar"><div class="bar-fill" style="width:80%"></div></div>
-          </li>
-          <li>
-            <div class="skill-top">
-              <span class="skill-dot">⑂</span>
-              <span>Git &amp; GitHub</span>
-            </div>
-            <div class="bar"><div class="bar-fill" style="width:65%"></div></div>
-          </li>
-          <li>
-            <div class="skill-top">
-              <span class="skill-dot">C++</span>
-              <span>Программчлал</span>
-            </div>
-            <div class="bar"><div class="bar-fill" style="width:55%"></div></div>
-          </li>
+        <h2>Work experience</h2>
+        <div class="timeline">
+          <div class="item">
+            <h3>Backend Developer </h3>
+            <div class="meta">Ulaanbaatar · 2026 – Present</div>
+            <ul>
+              <li>Designed and built REST APIs in Node.js serving 50,000+ daily users.</li>
+              <li>Optimized PostgreSQL queries and indexes, cutting response time by 45%.</li>
+              <li>Set up Docker and CI/CD pipelines, reducing deploy time from 30 to 5 minutes.</li>
+              <li>Wrote unit and integration tests, raising coverage to 85%.</li>
+            </ul>
+          </div>
+          <div class="item">
+            <h3>Junior Backend Developer – Sample Studio</h3>
+            <div class="meta">Ulaanbaatar · 2025 – 2026</div>
+            <ul>
+              <li>Built authentication, payment and notification services for 10+ projects.</li>
+              <li>Maintained MySQL databases and wrote migration scripts.</li>
+              <li>Fixed production bugs and improved logging and monitoring.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Projects</h2>
+        <div class="projects">
+          <div class="project">
+            <h3>Order Management API</h3>
+            <p>Handles orders, payments and inventory with role-based access and caching.</p>
+            <small>Node.js · PostgreSQL · Redis · Docker</small>
+          </div>
+          <div class="project">
+            <h3>URL Shortener Service</h3>
+            <p>High-traffic service with rate limiting, analytics and an admin API.</p>
+            <small>Python · Django · MySQL</small>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Education</h2>
+        <div class="timeline">
+          <div class="item">
+            <h3>BSc in Software Engineering – Mongolian University of Science Technology</h3>
+            <div class="meta">2025 – 2026 · GPA 3.6 / 4.0</div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Certificates</h2>
+        <ul class="plain">
+          <li>Node.js Application Developer<span>OpenJS Foundation · 2025</span></li>
+          <li>Docker &amp; Kubernetes Fundamentals<span>Udemy · 2026</span></li>
+          <li>IELTS Academic 6.5<span>2023</span></li>
         </ul>
       </section>
+    </main>
 
-      <section>
-        <h2>Холбоо барих</h2>
-        <div class="contact-row">
-          <a href="https://github.com" target="_blank" rel="noopener">
-            <span class="icn">
-              <svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
-              </svg>
-            </span>
-            <span>
-              <span class="label">GitHub</span>
-              GitHub профайл
-            </span>
-          </a>
-        </div>
-      </section>
-
-      <footer>Сүүлд шинэчлэгдсэн · 2026 он</footer>
-    </div>
   </div>
 </body>
 </html>
