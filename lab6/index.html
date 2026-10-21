@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Тохилог Студи – Дотоод засал, гэрийн шийдэл</title>
+  <meta name="description" content="Орон сууц, оффисын дотоод засал, тавилгын шийдлийг нэг дороос.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;900&family=Manrope:wght@400;500;700&display=swap&subset=cyrillic" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Агуулга руу очих</a>
+
+  <!-- ===== HEADER + NAVIGATION (Flexbox) ===== -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-name">Тохилог<br>Студи</span>
+      </a>
+
+      <input type="checkbox" id="menu-toggle" class="menu-toggle">
+      <label for="menu-toggle" class="hamburger" aria-label="Цэс нээх">
+        <span></span>
+        <span></span>
+        <span></span>
+      </label>
+
+      <nav class="main-nav" aria-label="Үндсэн цэс">
+        <ul class="nav-list">
+          <li><a class="nav-link is-active" href="#" aria-current="page">Нүүр</a></li>
+          <li><a class="nav-link" href="#projects">Төсөл</a></li>
+          <li><a class="nav-link" href="#services">Үйлчилгээ</a></li>
+          <li><a class="nav-link" href="#media">Видео</a></li>
+          <li><a class="nav-link" href="#footer">Холбоо барих</a></li>
+        </ul>
+      </nav>
+
+      <button class="theme-toggle" type="button" aria-label="Өнгөний горим солих" aria-pressed="false">☀ Гэрэлтэй</button>
+      <a class="btn btn-coral btn-pill" href="#footer">Нэвтрэх</a>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="hero-text">
+      <h1>
+        <span class="c">Бид таны</span>
+        <span>амьдралыг</span>
+        <span class="c">тохилог</span>
+        <span>болгоно</span>
+      </h1>
+
+      <a class="btn btn-coral" href="#projects">Төслүүд <span aria-hidden="true">↗</span></a>
+
+      <div class="reputation">
+        <h2>Манай нэр хүнд</h2>
+        <ul class="stats">
+          <li><strong>7K+</strong><span>Зарагдсан тавилга</span></li>
+          <li><strong>9</strong><span>Салбар</span></li>
+          <li><strong>2K+</strong><span>Үйлчлүүлэгч</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="hero-visual" aria-hidden="true">
+      <div class="room room-big"></div>
+      <div class="hero-bottom">
+        <div class="room room-small"></div>
+        <a class="more" href="#projects">Дэлгэрэнгүй <span>↓</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MAIN LAYOUT (Grid: main + sidebar) ===== -->
+  <div class="page-layout">
+
+    <main id="main" class="content">
+
+      <!-- Карт грид: 3 багана -->
+      <section id="projects" aria-labelledby="projects-title">
+        <div class="section-head">
+          <h2 id="projects-title">Сүүлийн <span class="c">төслүүд</span></h2>
+          <p>Орон сууц, оффис, кафены дотоод засал.</p>
+        </div>
+
+        <div class="card-grid">
+          <article class="flip-card" style="--i:0">
+            <div class="flip-inner">
+              <div class="flip-front card">
+                <img class="project-photo" src="img/photo1.jpg" alt="Интерьерийн төсөл 1" loading="lazy">
+                <div class="card-body"><h3>Зочны өрөө</h3><p>Модон шат, ногоон ургамал, дулаан өнгийн хослол.</p><div class="card-meta"><span>Орон сууц</span><span>62 м²</span></div></div>
+              </div>
+              <div class="flip-back">
+                <h3>Зочны өрөө</h3><p>Модон шат, ногоон ургамал, дулаан өнгийн хослол.</p>
+                <p>Төслийн дэлгэрэнгүй мэдээлэл</p>
+                <button class="flip-reset" type="button">Буцах ↩</button>
+              </div>
+            </div>
+            <button class="flip-trigger" type="button" aria-expanded="false" aria-label="Зочны өрөө төслийн дэлгэрэнгүйг харах">Дэлгэрэнгүй ↻</button>
+          </article>
+
+          <article class="flip-card" style="--i:1">
+            <div class="flip-inner">
+              <div class="flip-front card">
+                <img class="project-photo" src="img/photo2.jpg" alt="Интерьерийн төсөл 2" loading="lazy">
+                <div class="card-body"><h3>Нээлттэй оффис</h3><p>20 хүний ажлын байр, уулзалтын өрөөтэй.</p><div class="card-meta"><span>Оффис</span><span>140 м²</span></div></div>
+              </div>
+              <div class="flip-back">
+                <h3>Нээлттэй оффис</h3><p>20 хүний ажлын байр, уулзалтын өрөөтэй.</p>
+                <p>Төслийн дэлгэрэнгүй мэдээлэл</p>
+                <button class="flip-reset" type="button">Буцах ↩</button>
+              </div>
+            </div>
+            <button class="flip-trigger" type="button" aria-expanded="false" aria-label="Нээлттэй оффис төслийн дэлгэрэнгүйг харах">Дэлгэрэнгүй ↻</button>
+          </article>
+
+          <article class="flip-card" style="--i:2">
+            <div class="flip-inner">
+              <div class="flip-front card">
+                <img class="project-photo" src="img/photo3.jpg" alt="Интерьерийн төсөл 3" loading="lazy">
+                <div class="card-body"><h3>Кафе, Сүхбаатарын талбай</h3><p>Дулаан гэрэлтүүлэг, байгалийн мод, 32 суудал.</p><div class="card-meta"><span>Худалдаа</span><span>85 м²</span></div></div>
+              </div>
+              <div class="flip-back">
+                <h3>Кафе, Сүхбаатарын талбай</h3><p>Дулаан гэрэлтүүлэг, байгалийн мод, 32 суудал.</p>
+                <p>Төслийн дэлгэрэнгүй мэдээлэл</p>
+                <button class="flip-reset" type="button">Буцах ↩</button>
+              </div>
+            </div>
+            <button class="flip-trigger" type="button" aria-expanded="false" aria-label="Кафе, Сүхбаатарын талбай төслийн дэлгэрэнгүйг харах">Дэлгэрэнгүй ↻</button>
+          </article>
+
+          <article class="flip-card" style="--i:3">
+            <div class="flip-inner">
+              <div class="flip-front card">
+                <img class="project-photo" src="img/photo4.jpg" alt="Интерьерийн төсөл 4" loading="lazy">
+                <div class="card-body"><h3>Унтлагын өрөө</h3><p>Дуу чимээ шингээх хана, суурилуулсан хувцасны шүүгээ.</p><div class="card-meta"><span>Орон сууц</span><span>24 м²</span></div></div>
+              </div>
+              <div class="flip-back">
+                <h3>Унтлагын өрөө</h3><p>Дуу чимээ шингээх хана, суурилуулсан хувцасны шүүгээ.</p>
+                <p>Төслийн дэлгэрэнгүй мэдээлэл</p>
+                <button class="flip-reset" type="button">Буцах ↩</button>
+              </div>
+            </div>
+            <button class="flip-trigger" type="button" aria-expanded="false" aria-label="Унтлагын өрөө төслийн дэлгэрэнгүйг харах">Дэлгэрэнгүй ↻</button>
+          </article>
+
+          <article class="flip-card" style="--i:4">
+            <div class="flip-inner">
+              <div class="flip-front card">
+                <img class="project-photo" src="img/photo5.jpg" alt="Интерьерийн төсөл 5" loading="lazy">
+                <div class="card-body"><h3>Гал тогоо</h3><p>Арлын ширээтэй, олон шүүгээтэй орчин үеийн шийдэл.</p><div class="card-meta"><span>Орон сууц</span><span>18 м²</span></div></div>
+              </div>
+              <div class="flip-back">
+                <h3>Гал тогоо</h3><p>Арлын ширээтэй, олон шүүгээтэй орчин үеийн шийдэл.</p>
+                <p>Төслийн дэлгэрэнгүй мэдээлэл</p>
+                <button class="flip-reset" type="button">Буцах ↩</button>
+              </div>
+            </div>
+            <button class="flip-trigger" type="button" aria-expanded="false" aria-label="Гал тогоо төслийн дэлгэрэнгүйг харах">Дэлгэрэнгүй ↻</button>
+          </article>
+
+          <article class="flip-card" style="--i:5">
+            <div class="flip-inner">
+              <div class="flip-front card">
+                <img class="project-photo" src="img/photo6.jpg" alt="Интерьерийн төсөл 6" loading="lazy">
+                <div class="card-body"><h3>Хүүхдийн өрөө</h3><p>Аюулгүй материал, тоглох болон сурах булантай.</p><div class="card-meta"><span>Орон сууц</span><span>16 м²</span></div></div>
+              </div>
+              <div class="flip-back">
+                <h3>Хүүхдийн өрөө</h3><p>Аюулгүй материал, тоглох болон сурах булантай.</p>
+                <p>Төслийн дэлгэрэнгүй мэдээлэл</p>
+                <button class="flip-reset" type="button">Буцах ↩</button>
+              </div>
+            </div>
+            <button class="flip-trigger" type="button" aria-expanded="false" aria-label="Хүүхдийн өрөө төслийн дэлгэрэнгүйг харах">Дэлгэрэнгүй ↻</button>
+          </article>
+        </div>
+      </section>
+
+      <!-- Лаб 6: Multimedia -->
+      <section id="media" class="media-section" aria-labelledby="media-title">
+        <div class="section-head"><h2 id="media-title">Манай <span class="c">видео танилцуулга</span></h2></div>
+        <div class="media-grid">
+          <div class="media-box">
+            <h3>Интерьерийн богино бичлэг</h3>
+            <video controls preload="metadata" playsinline poster="img/photo1.jpg">
+              <source src="video/clip.mp4" type="video/mp4">
+              <track kind="captions" src="video/clip.mn.vtt" srclang="mn" label="Монгол хадмал" default>
+              Таны хөтөч видео тоглуулах боломжгүй байна.
+            </video>
+            <p class="media-note">6 интерьерийн зурагтай танилцуулга, Монгол хадмалтай.</p>
+          </div>
+          <div class="media-box">
+            <h3>3D интерьерийн танилцуулга</h3>
+            <iframe title="Интерьерийн 3D жишээ" src="tour.html" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <p class="media-note">iframe дотор интерактив интерьерийн танилцуулга ажиллана.</p>
+          </div>
+        </div>
+        <div class="svg-feature">
+          <svg width="48" height="48" viewBox="0 0 48 48" role="img" aria-labelledby="svg-title"><title id="svg-title">Байшингийн дүрс</title><path d="M6 23 24 8l18 15v18H6V23Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><path d="M19 41V27h10v14" fill="none" stroke="currentColor" stroke-width="3"/></svg>
+          <span>Тохилог орон зайг хамтдаа бүтээе</span>
+        </div>
+      </section>
+
+      <!-- Үйлчилгээ -->
+      <section id="services" aria-labelledby="services-title">
+        <div class="section-head">
+          <h2 id="services-title">Бидний <span class="c">үйлчилгээ</span></h2>
+        </div>
+
+        <ul class="service-list">
+          <li class="service">
+            <span class="service-icon" aria-hidden="true">1</span>
+            <div>
+              <h3>Зураг төсөл</h3>
+              <p>3D дүрслэл, материалын сонголт, тооцоо.</p>
+            </div>
+          </li>
+          <li class="service">
+            <span class="service-icon" aria-hidden="true">2</span>
+            <div>
+              <h3>Засвар, угсралт</h3>
+              <p>Гэрээнд заасан хугацаанд өөрийн багаар хийнэ.</p>
+            </div>
+          </li>
+          <li class="service">
+            <span class="service-icon" aria-hidden="true">3</span>
+            <div>
+              <h3>Тавилга захиалга</h3>
+              <p>Хэмжээ, өнгийг таны өрөөнд тааруулан үйлдвэрлэнэ.</p>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="sidebar" aria-label="Нэмэлт мэдээлэл">
+      <section class="widget">
+        <h2>Ажлын цаг</h2>
+        <ul class="info-list">
+          <li><span>Даваа – Баасан</span><strong>09:00 – 18:00</strong></li>
+          <li><span>Бямба</span><strong>10:00 – 16:00</strong></li>
+          <li><span>Ням</span><strong>Амарна</strong></li>
+        </ul>
+      </section>
+
+      <section class="widget">
+        <h2>Яагаад биднийг сонгох вэ</h2>
+        <ul class="check-list">
+          <li>Үнэ нэг удаа тохирно</li>
+          <li>3 жилийн баталгаа</li>
+          <li>Үнэгүй хэмжилт</li>
+        </ul>
+      </section>
+
+      <section class="widget widget-coral">
+        <h2>Үнэгүй зөвлөгөө</h2>
+        <p>Өрөөний зургаа явуулаарай, 24 цагийн дотор санал өгнө.</p>
+        <a class="btn btn-dark" href="#footer">Зөвлөгөө авах</a>
+      </section>
+    </aside>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer id="footer" class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="brand-name">Тохилог Студи</span>
+        <p>Орон сууц, оффисын дотоод засал, тавилгын шийдлийг нэг дороос.</p>
+      </div>
+
+      <nav class="footer-col" aria-label="Хуудас">
+        <h2>Хуудас</h2>
+        <ul>
+          <li><a href="#projects">Төсөл</a></li>
+          <li><a href="#services">Үйлчилгээ</a></li>
+        </ul>
+      </nav>
+
+      <address class="footer-col">
+        <h2>Холбоо барих</h2>
+        <ul>
+          <li><a href="mailto:info@tohilog.mn">info@tohilog.mn</a></li>
+          <li><a href="tel:+97600000000">+976 0000 0000</a></li>
+          <li>Улаанбаатар хот</li>
+        </ul>
+      </address>
+    </div>
+    <p class="copyright">© 2026 Тохилог Студи. Лаборатори 6 – CSS Animation, Transform, Multimedia.</p>
+  </footer>
+
+</body>
+</html>
