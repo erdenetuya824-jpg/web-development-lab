@@ -1,0 +1,17 @@
+@use "tokens";
+
+@use "sass:map";
+
+// Flexbox-ийн давтагдсан код
+@mixin flex-center($justify: center, $align: center) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+// Responsive дэлгэцийн хэмжээ
+@mixin respond($size) {
+  @media (min-width: map.get(tokens.$breakpoints, $size)) {
+    @content;
+  }
+}

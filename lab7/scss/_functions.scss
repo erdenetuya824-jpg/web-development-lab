@@ -1,0 +1,14 @@
+@use "sass:math";
+@use "sass:color";
+
+@function rem($px, $base: 16) {
+  @return math.div($px, $base) * 1rem;
+}
+
+@function contrast($background) {
+  @if color.channel($background, "lightness", $space: hsl) > 55% {
+    @return #151517;
+  } @else {
+    @return #ffffff;
+  }
+}

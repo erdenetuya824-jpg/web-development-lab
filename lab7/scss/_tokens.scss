@@ -1,0 +1,35 @@
+$colors: (
+  "bg": #151517,
+  "panel": #212125,
+  "panel-2": #2b2b30,
+  "coral": #fb5b57,
+  "coral-d": #e24541,
+  "white": #ffffff,
+  "text": #d9d9de,
+  "muted": #9a9aa3,
+  "line": #3a3a40
+);
+
+$breakpoints: (
+  "tablet": 768px,
+  "desktop": 1024px
+);
+
+$radii: (
+  "normal": 18px,
+  "large": 44px
+);
+
+:root {
+  @each $name, $value in $colors {
+    --#{$name}: #{$value};
+  }
+
+  --font-head: "Unbounded", "Arial Black", system-ui, sans-serif;
+  --font-body: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --radius: 18px;
+  --radius-lg: 44px;
+  --gap: 1.5rem;
+  --max-width: 1240px;
+}
