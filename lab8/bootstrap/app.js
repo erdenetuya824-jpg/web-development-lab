@@ -1,0 +1,4 @@
+const root=document.documentElement; const btn=document.getElementById('theme-toggle');
+function theme(mode){root.setAttribute('data-bs-theme',mode);btn.textContent=mode==='dark'?'☀ Гэрэлтэй':'☾ Харанхуй';btn.setAttribute('aria-pressed',String(mode==='light'));localStorage.setItem('lab8-bootstrap-theme',mode)}
+theme(localStorage.getItem('lab8-bootstrap-theme')||'dark');btn.addEventListener('click',()=>theme(root.getAttribute('data-bs-theme')==='dark'?'light':'dark'));
+const form=document.getElementById('contact-form');form.addEventListener('submit',e=>{e.preventDefault();form.classList.add('was-validated');if(form.checkValidity()){document.getElementById('form-status').textContent='Маягт зөв бөглөгдлөө. Энэ нь демо тул сервер рүү илгээгээгүй.';form.reset();form.classList.remove('was-validated')}});

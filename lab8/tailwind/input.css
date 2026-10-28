@@ -1,0 +1,4 @@
+@import "tailwindcss";
+@source "./index.html";
+@theme { --color-brand: #fb5b57; --color-panel: #212125; --color-line: #3a3a40; --color-ink: #ffffff; --color-muted: #a7a7b2; --font-display: "Unbounded",system-ui,sans-serif; --font-sans: "Manrope",system-ui,sans-serif; }
+@custom-variant dark (&:where(.dark, .dark *));

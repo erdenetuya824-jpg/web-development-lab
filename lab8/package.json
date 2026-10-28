@@ -1,0 +1,13 @@
+{
+  "name": "tohilog-lab8",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "tailwindcss -i ./tailwind/input.css -o ./tailwind/output.css --minify",
+    "dev": "tailwindcss -i ./tailwind/input.css -o ./tailwind/output.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "^4.1.0",
+    "@tailwindcss/cli": "^4.1.0"
+  }
+}

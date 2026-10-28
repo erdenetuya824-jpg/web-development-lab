@@ -1,0 +1,13 @@
+/* Bootstrap 5.3 + brand overrides (CSS variable) */
+:root { --brand: #fb5b57; }
+body { font-family: "Manrope",system-ui,sans-serif; }
+h1,h2,h3,.navbar-brand { font-family: "Unbounded",system-ui,sans-serif; }
+.brand-text { color: var(--brand)!important; }
+.btn-brand { --bs-btn-color:#fff;--bs-btn-bg:var(--brand);--bs-btn-border-color:var(--brand);--bs-btn-hover-color:#fff;--bs-btn-hover-bg:#e24541;--bs-btn-hover-border-color:#e24541;--bs-btn-active-bg:#d63b38;--bs-btn-active-border-color:#d63b38; }
+.navbar { background: var(--bs-body-bg); }
+.hero-visual { min-height: 340px; background: linear-gradient(130deg,transparent,#fb5b5733),url('../assets/img/photo1.jpg') center/cover,linear-gradient(135deg,#3c3132,#1b1b21); }
+.project-photo { height: 200px; object-fit: cover; background: #34343b; }
+.project-card,.service-box,.form-panel { background: var(--bs-tertiary-bg); }
+.project-card { transition: transform .2s; } .project-card:hover { transform: translateY(-5px); }
+.video-wrap h3 { font-size: 1.25rem; }
+:focus-visible { outline: 3px solid var(--brand); outline-offset: 3px; }
